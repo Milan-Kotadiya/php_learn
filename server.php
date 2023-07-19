@@ -11,13 +11,13 @@ if (isset($_POST["username"])) {
 // $dbFunctions->createDb('sqlmilandatabase');
 // $dbFunctions->dropDb('sqlmilandatabase');
 // $dbFunctions->closeConnection();
+// $dbFunctions->createDb('sqlmilandatabase');
+// $dbFunctions->dropDb('sqlmilandatabase');
+// $dbFunctions->closeConnection();
+// $dbFunctions->useDb('sqlmilandatabase');
+// $dbFunctions->createTable('testtable','sqlmilandatabase');
+// $dbFunctions->deleteTable('testtable', 'sqlmilandatabase');
+// $dbFunctions->selectAllfromTable('neo_project', 'migrations');
 
 // CLOSE SQL CONNECTION
 // $connect->close();
-
-// createDb('sqlmilandatabase');
-// dropDb('sqlmilandatabase');
-// useDb('sqlmilandatabase');
-// createTable('testtable','sqlmilandatabase');
-// deleteTable('testtable', 'sqlmilandatabase');
-// selectAllfromTable('neo_project', 'migrations');
