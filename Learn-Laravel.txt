@@ -1,0 +1,402 @@
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+									STEPS FOR LARAVEL
+	INSTALL COMPOSER
+		=> CHECK IS THERE COMPOSER IN SYSTEM?
+			=> OPEN TERMINAL AND TYPE "composer".
+		=> INSTALL COMPOSER
+			FOLLOW LINK 	=> https://getcomposer.org/download/
+		=> INSTALL LARAVEL 
+			FOLLOW LINK 	=> https://laravel.com/docs/10.x/installation
+		=> CREATE NEW PROJECT	=> COMMAND IS PROVIDED BELOW 
+		=> INSTALL SERVER XAMPP OR LARAGON
+			LARAGON INSTALL => https://laragon.org/download/index.html
+			LARAGON PROJECT LOCATION => laragon\www
+			XAMPP INSTALL   => https://www.apachefriends.org/download.html
+			XAMPP PROJECT LOCATION 	 => xampp\htdocs
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+								FILE AND FOLDER STRUCTURE OF LARAVEL PROJECT
+	APP/
+		CORE CODE OF APPLICATION IS WRITTEN HERE.. 
+		1. HTTP
+			I. CONTROLLER	= DATABASE AND CLIENT SIDE CONTROL LIKE "EXPRESS IN MERN"; 
+			II. MIDDLEWARE	= VERIFICATION OF USER (TOKEN IN NODEJS);
+		2. MODEL		= DATABASE SCHEMA AND MODEL;
+		3. EXCEPTION            =
+		4. PROVIDER		= PROVIDE SERVICES;
+		5. CONSOLE/KERNEL 	= COMMONLY USE FOR REGISTER MIDDLEWARE;
+
+	BOOTSTRP/
+		1. APP.PHP    		= LARAVEL FILES LOAD WITH HTML;
+		2. CACHE 		= ALL CACHES OF THIS PROJECT WILL BE STORE HERE;
+	
+	LANG/ 				= 
+
+	CONFIG/				= ALL CONFIGRATIONS RELATED PROJECT WILL BE HERE;
+	
+	DATABASE/
+		1. FACTORY 		= YOU CAN GENERATE FAKE DATA;
+		2. SEEDERS		= YOU CAN GENERATE FAKE DATA FORCEFULLY;
+		3. MIGRATION            = ALL DATA WILL BE CREATED AND STORED HERE;
+
+	PUBLIC/   			= ALL FRONTEND STARTUP FILES PLACED HERE;
+	
+	RESOURCES/ 			= ALL PROJECTS CLIENT SIDE UNCOMILED COMPONENT'S ARE CREATED AND STORED HERE,
+					  VIEWS (HTML FILES AS A BLADE.PHP FORMAT), CSS AND JS;
+	
+	ROUTES/
+		1. API 			= API/BACKEND SIDE ROUTES HANDLE HERE;
+		2. CHANNELS		= 
+		3. CONSOLE		= 
+		4. WEB 			= CLIENT SIDE ROUTES HANDLE HERE;
+
+	STORAGE/			= 
+
+	TESTS/ 				= TEST CASES ARE WRITTEN HERE;
+
+	VENDOR/				= ALL DEPENDENCY FILES ARE STORED HERE;
+	 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			Laravel Command List
+-> Create New App/Project = composer create-project laravel/laravel (projectName)       => CREATE NEW PROJECT
+-> Create New Project (V) = composer create-project laravel/laravel:^9.0 (projectName)  => CREATE NEW PROJECT WITH SPECIFIC VERSION
+-> Serve App/Project On Localhost = php artisan serve                                   => SERVE APP
+-> Create Model = php artisan make:model ModelName					=> MODEL
+-> Create Migration = php artisan make:migration create_users_table			=> MIGRATION 
+-> Create Model with Migration = php artisan make:model ModelName -m			=> MODEL & MIGRATION
+-> Create Controller = php artisan make:controller ControllerName			=> CONTROLLER
+-> Create Controller with CRUD = php artisan make:controller -r				=> CONTROLLER WITH RESOURCES
+-> Create Middleware = php artisan make:middleware HeaderMiddleware			=> MIDDLEWARE
+-> Create Providers = php artisan make:provider TestProvide				=> PROVIDERS
+-> Create Factory = php artisan make:factory UserFactory				=> FACTORY
+-> Create Seeder = php artisan make:seeder UserSeeder					=> SEEDER
+-> Create Model-Migration-Controller = php artisan make:model Todo(ModelName) -mcr	=> MODEL-MIGRATION-CONTROLLER_WITH_RESOURCES
+-> Create All = php artisan make:model Post(ModelName) -a				=> MODEL-FACTORY-SEEDER-MIGRATION-REQUEST-CONTROLLER-POLICY
+-> Clear All Cache = php artisan optimize:clear						=> CLEAR ALL
+-> Sync With Database = php artisan migrate                                             => ALL TABLE WHICH IN CODE IS SYNC WITH DATABASE
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			Laravel Step by Step Video Tutorial
+Youtube Link - https://www.youtube.com/watch?v=_UoBJDWKQbw&list=PL8p2I9GklV45jJzLsexf2_hNNafpCXw9k&ab_channel=CodeStepByStep
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		Laravel Perform CRUD
+Link - https://www.itsolutionstuff.com/post/laravel-8-crud-application-tutorialfor-beginnersexample.html
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		Laravel 9 Auth Login and Registration with Username or Email
+Link - https://codeanddeploy.com/blog/laravel/laravel-8-authentication-login-andregistration-with-username-or-email
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		Create Layout Using Laravel Blade Templating Engine
+Link - https://www.cloudways.com/blog/create-laravel-blade-layout/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		Laravel Role Based Multi Authentication
+Link  - https://www.youtube.com/watch?v=DwEjhSYBac4 ( YOUTUBE)
+		https://medium.com/backenders-club/multiple-role-based-authentication-in-laravel-e79966205470
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		Send Emails In Laravel 9 Using Gmail's SMTP Server
+Link - https://www.twilio.com/blog/send-emails-laravel-8-gmail-smtp-server
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		Laravel Get Record Last Week, Month, 15 Days, Year
+Link - https://www.tutsmake.com/laravel-get-record-last-week-month-15-days-year/
+1)--Laravel Get Last Day Records-->$dd=User::where('created_at','>=',Carbon::now()->subdays(1))>get(['name','created_at']);
+	dd($dd);
+	->OUTPUT - "name" => "abhisek"
+			   "created_at" => "2022-05-20 11:27:30"
+2)--Get Last Week Data in Laravel-->$previous_week = strtotime("-1 week +1 day");
+	$start_week = strtotime("last sunday midnight",$previous_week);
+	$end_week = strtotime("next saturday",$start_week);
+	$start_week = date("Y-m-d",$start_week);
+	$end_week = date("Y-m-d",$end_week);
+	$dd=User::whereBetween('created_at', [$start_week, $end_week])>get(['name','created_at']);
+	dd($dd);
+		->OUTPUT -"name" => "dwarkesh"
+			  "created_at" => "2022-05-12 11:19:42"
+		OR
+	$previous_week = strtotime("-1 week +1 day");
+	$start_week = strtotime("last sunday midnight",$previous_week);
+	$end_week = strtotime("next saturday",$start_week);
+	$start_week = date("Y-m-d",$start_week);
+	$end_week = date("Y-m-d",$end_week);
+	$dd=User::whereBetween('created_at', [$start_week, $end_week])>get(['name','created_at']);
+	printf($dd);
+	exit;
+		->OUTPUT -1."name": "dwarkesh",
+				"created_at": "2022-05-12T05:49:42.000000Z"
+			 2."name": "Hemant",
+				"created_at": "2022-05-10T06:21:40.000000Z"
+3)--Laravel Get Last Month records--> $dd=User::whereMonth('created_at', '=', Carbon::now()>subMonth()->month)->get(['name','created_at']);
+	printf($dd);
+	exit;
+		OUTPUT -1."name": "Ronak",
+				"created_at": "2022-04-01T05:45:32.000000Z"
+			2."name": "abcd",
+				"created_at": "2022-04-20T07:02:58.000000Z"
+3)--Get Last 15 Days & 30 Days Records in Laravel
+	->
+		$last_15_days =
+			User::where('created_at','>=',Carbon::now()->subdays(15))>get(['name','created_at']);
+		$last_30_days =
+			User::where('created_at','>=',Carbon::now()->subdays(30))>get(['name','created_at']);
+		printf($last_30_days);
+		exit;
+			OUTPUT -1."name": "Stya",
+					"created_at": "2022-05-22T02:49:21.000000Z"
+				2."name": "dwarkesh",
+					"created_at": "2022-05-12T05:49:42.000000Z"
+				3."name": "abhisek",
+					"created_at": "2022-05-20T08:57:30.000000Z"
+				4."name": "Jaymin",
+					"created_at": "2022-05-19T05:02:36.000000Z"
+				5."name": "Hemant",
+					"created_at": "2022-05-10T06:21:40.000000Z"
+				6."name": "abcd",
+					"created_at": "2022-04-20T07:02:58.000000Z"
+				7."name": "sagar",
+					"created_at": "2022-04-19T07:11:17.000000Z"
+4)--Laravel Get Last Year Record-->
+	$dd=User::whereYear('created_at', date('Y', strtotime('-1 year')))->get(['name','created_at']);
+	printf($dd);
+	exit;
+		OUTPUT - "name": "Jayesh",
+			"created_at": "2021-12-15T05:30:00.000000Z"
+5)--Fetch Month Wise Last Year Data--> 
+	$dd=User::select(DB::raw("(COUNT(*)) as count"),DB::raw("MONTHNAME(created_at) as monthname"))
+			->whereYear('created_at', date('Y', strtotime('-1 year')))->groupBy('monthname')->get();
+	printf($dd);
+	exit;
+		OUTPUT -1."count": 1,
+				"monthname": "December"
+			2."count": 1,
+				"monthname": "November"
+	//End
+ 	
+		date&month&calender Query
+
+6) Query -> <?php echo \Carbon\Carbon::createFromTimeStamp(strtotime($comment->created_at))->diffForHumans() ?>
+		
+	OUTPUT ->is created_at 06-07-2022-3 days ago
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+(Laravel Eloquent whereBetween() Query Example) Link -> https://www.itsolutionstuff.com/post/laravel-eloquent-wherebetween-queryexampleexample.html
+(Laravel Query Builder Where Exists Example) Link -> https://www.itsolutionstuff.com/post/laravel-5-query-builder-where-existsexampleexample.html
+(Laravel Multiple Where Condition Example) Link -> https://www.itsolutionstuff.com/post/laravel-multiple-where-conditionexampleexample.html
+(Laravel Eloquent Where Query Examples) Link -> https://www.itsolutionstuff.com/post/laravel-eloquent-where-queryexamplesexample.html
+(Laravel Like Query Example using Eloquent Where Clause) Link -> https://www.itsolutionstuff.com/post/laravel-5-like-query-example-using-eloquentwhere-clauseexample.html
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+asset function Laravel
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+asset function how to use in laravel
+	->set for public folder like js,css and more
+		example = <script src="{{ asset('assets/js/dashmix.app.min.js')}}"></script>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	if($request->hasFile('image'))
+	{
+		$oldFile = Product::select('image')->where('id')->first();
+		if($oldFile){
+			if(file_exists(public_path('assets/images/product/'.$oldFile>image))){
+				unlink(public_path('assets/images/product/'.$oldFile->image));
+			};
+		}
+		$file = $request->file('image');
+		$fileName = "IMG_".date('Ymd')."_".time().'.'.$file->extension();
+		$file->move(public_path('assets/images/product'),$fileName);
+		$updateData['image'] = $fileName;
+	} //End File Upload
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	How to Foreign Key Between Two Table
+Command Like-> php artisan make:migration add_paid_to_users_table --table=users
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		public function up()
+		{
+			Schema::table('students', function (Blueprint $table) {
+				$table->unsignedBigInteger('book_id')->after('contact');
+				$table->foreign('book_id')
+					->references('id')
+					->on('books');
+			});
+		}
+/**
+* Reverse the migrations.
+*
+* @return void
+*/
+	public function down()
+	{
+		Schema::table('students', function (Blueprint $table) {
+			$table->dropForeign('students_book_id_foreign');
+			$table->dropColumn('book_id');
+		});
+	} //End Foreign Key
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Laravel Searching
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	public function search(Request $request)
+	{
+		$search = $request->get('search');
+		$products= Product::select('products.*','categories.id as c_id','categories.category')
+						->leftJoin('categories', 'products.cate_id', '=','categories.id')
+						->where('name','like','%'.$search.'%')
+						->orwhere('price','like','%'.$search.'%')
+						->orwhere('category','like','%'.$search.'%')->paginate(5);
+		return view('products.index',compact('products',$products));
+
+------------&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&--------------------------
+
+	$products= Product::select('products.*','categories.id as c_id','categories.category')
+			->leftJoin('categories', 'products.cate_id', '=','categories.id')
+			->where(function($query) use ($search){
+				$query->where('name','like',$search)
+					->orWhere('price','like',$search)
+					->orWhere('category','like',$search);})->paginate(5);
+		return view('products.index',compact('products',$products));
+	}
+	//End Search
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// API Call And Secure API Call
+	Route::post('/user-register',[AuthController::class,'register']);
+	Route::post('/user-logout',[AuthController::class,'logout']);
+		// Secure API Call
+	Route::group(['middleware' => ['auth:sanctum']], function ()
+	{	
+	Route::get('/show-products', [ProductController::class,'show']);
+	Route::post('/store-products', [ProductController::class,'store']);
+	Route::post('/update-products', [ProductController::class,'update']);
+	Route::post('/update-products', [ProductController::class,'update']);
+	Route::post('/search-products', [ProductController::class,'search']);
+	Route::post('/user-logout',[AuthController::class,'logout']);
+	}); // End API
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		How to Multiple Table are foreign key
+	{
+	public function up()
+		Schema::create('blogs', function (Blueprint $table) {
+			$table->id();
+			$table->string('title');
+			$table->string('description');
+			$table->unsignedBigInteger('category_id');
+			$table->unsignedBigInteger('tag_id');
+			$table->unsignedBigInteger('user_id');
+			$table->timestamps();
+			$table->foreign('category_id')
+				->references('id')
+				->on('categories')
+				->onDelete('cascade');
+			$table->foreign('tag_id')
+				->references('id')
+				->on('tags')
+				->onDelete('cascade');
+			$table->foreign('user_id')
+				->references('id')
+				->on('users')
+				->onDelete('cascade');
+
+		});
+	}
+//End multiple foreign key
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+in Models => How to Relation with other Model
+use HasFactory;
+	public function category(): HasOne
+	{
+		return $this->hasOne(Category::class,'id','category_id');
+	}
+	public function tages(): HasMany
+	{
+		return $this->hasMany(Tag::class,'id','tag_id');
+	}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		Laravel Relationship Query and how to get Data using pivot Table
+	public function tagslug($slug)
+	{
+		$tags = Tag::where('slug', $slug)->first();
+		if ($tags) {
+			$blogs = DB::table('blog_tag')->where('tag_id', $tags->id)>pluck('blog_id')->all();
+			$blogtag = Blog::with(['user', 'category', 'blogable'])>wherein('id', $blogs)->get();
+		return $blogtag;
+		}
+	}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		Laravel index page. How to Show created_at date with 2 day ago and types....
+	
+	<td>@if($blog->created_at){{ date('d-m-Y',strtotime($blog->created_at)) }} @php
+			echo Carbon::createFromTimeStamp(strtotime($blog->created_at))->diffForHumans()@endphp
+	 @endif</td>
+		&&&&&&&&&&&&
+	<input type="text" name="publish_at" id="publish_at" class="form-control pullright" placeholder="Select Date" autocomplete="off">
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		Category related Dynamic Blog show in frontend
+
+Method-(1)	public function index(Request $request)
+		{
+			$blogs = Blog::limit(2)->get();
+			$categories = Category::with(['blogs' => function ($q) use ($blogs) {
+			return $q->wherePivotNotIn('blog_id', $blogs->pluck('id')->all())>limit(4);
+			}])->limit(1)->get();
+			return view('front.blog', ['blogs' => $blogs, 'categories' =>$categories]);
+		}
+
+Method-(2)	public function index(Request $request)
+		{
+			$blogs = Blog::limit(2)->get();
+			$categories1 = Category::with(['blogs' => function ($query) use ($blogs) {
+			return $query->wherePivotNotIn('blog_id', $blogs->pluck('id')>all())->limit(4)->orderbyDesc('id');}])->where('id', 1)->get();
+	
+			$categories2 = Category::with(['blogs' => function ($query) use ($blogs) {
+				return $query->wherePivotNotIn('blog_id', $blogs->pluck('id')>all())->limit(4)->orderbyDesc('id');
+			}])->where('id', 2)->get();
+
+			return view('front.blog', ['blogs' => $blogs, 'categories' => collect($categories1)->merge($categories2)]);
+		}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		Count a view using click on the link
+-
+	$updateCount['views'] = $blog->views + 1; //Count View
+	$count = Blog::where('slug', $request->slug)->update($updateCount); //Blogs View
+	Count
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		Laravel how to input a value given by user in terminal with get data and progressbar
+
+	public function handle()
+	{
+		$number = $this->ask("Enter Number:-");
+		$progressbar = $this->output->createProgressBar($number);
+		$progressbar->start();
+		for ($i = 1; $i <= $number; $i++) {
+			\App\Models\User::factory(1)->create();
+			sleep(1);
+			$progressbar->advance();
+		}
+		$progressbar->finish();
+		return 0;
+	}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	$categoryList = Category::select('id', 'name', 'slug')->get();
+	$category = Category::with(['blogs' => function ($query) {
+		return $query->limit(4);
+	}])->where('categories.slug', trim($slug))->first();
+		$data = Blog::limit(1)->first();
+	return view('front.blog-category', ['category' => $category, 'data' =>$data, 'categoryList' => $categoryList]);
+//Without paginate
+------------------------------------
+		$categoryList = Category::select('id', 'name', 'slug')->get();
+		$category = Category::where('categories.slug', trim($slug))->first();
+		$category->blogs = Blog::join('blog_category', 'blog_category.blog_id','=', 'blogs.id')
+			->where('blog_category.category_id', $category->id)->paginate(4);
+		$data = Blog::limit(1)->first();
+	return view('front.blog-category', ['category' => $category, 'data' =>$data, 'categoryList' => $categoryList]); //with Paginate
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		Create new project in Laravel-9 and Log Viewer in laravel
+
+command--composer create-project laravel/laravel:^9.0 laravel_logview
+	open Project in vs code then open terminal
+	1) To install the package via composer, Run:
+		->composer require opcodesio/log-viewer
+	2) config/app.php in the providers array
+		'providers' => [
+		...
+	opcodesio\LogViewer\LogViewerServiceProvider::class,],
+	3) php artisan log-viewer:publish
+	4) php artisan log-viewer:publish --force
+	4) php artisan log-viewer:publish --tag=config
+	5) php artisan log-viewer:publish --tag=lang
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+      
