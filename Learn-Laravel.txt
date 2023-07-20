@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-									STEPS FOR LARAVEL
+									STEPS FOR LARAVEL (MVC => M = Model, V = View, C = Controller)
 	INSTALL COMPOSER
 		=> CHECK IS THERE COMPOSER IN SYSTEM?
 			=> OPEN TERMINAL AND TYPE "composer".
@@ -19,7 +19,7 @@
 		CORE CODE OF APPLICATION IS WRITTEN HERE.. 
 		1. HTTP
 			I. CONTROLLER	= DATABASE AND CLIENT SIDE CONTROL LIKE "EXPRESS IN MERN"; 
-			II. MIDDLEWARE	= VERIFICATION OF USER (TOKEN IN NODEJS);
+			II. MIDDLEWARE	= MIDDLEWARE LIKE VERIFICATION OF USER (TOKEN IN NODEJS);
 		2. MODEL		= DATABASE SCHEMA AND MODEL;
 		3. EXCEPTION            =
 		4. PROVIDER		= PROVIDE SERVICES;
@@ -46,7 +46,7 @@
 	ROUTES/
 		1. API 			= API/BACKEND SIDE ROUTES HANDLE HERE;
 		2. CHANNELS		= 
-		3. CONSOLE		= 
+		3. CONSOLE		= USE FOR CONSOLE.LOG();
 		4. WEB 			= CLIENT SIDE ROUTES HANDLE HERE;
 
 	STORAGE/			= 
@@ -54,14 +54,43 @@
 	TESTS/ 				= TEST CASES ARE WRITTEN HERE;
 
 	VENDOR/				= ALL DEPENDENCY FILES ARE STORED HERE;
-	 
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-			Laravel Command List
+										ROUTE
+	==> LARAVEL APP CLIENT SIDE ROUTE WILL HANDLE IN ROUTES/WEB.PHP FILE
+								AS A SHORT AND EASY WAY TO WRITE 
+							Route::view('pageRoute','pageName'); => Route::view('/contact','contact');
+
+								 HANDLE PARAMETERS OF ROUTE
+						// Route::get('/contact/{params}', function ($params) {
+						//     return view('contact', ['params' => $params]);
+						// });
+
+									 REDIRECT TO PAGE/ROUTE
+						Route::get('/redirect/{admin}', function ($admin) {
+    							if ($admin === 'admin') return view('contact');
+    							else return redirect('home');
+						});
+
+									      CONTROLLER
+	==> CONTROLLER CONTROLES ROUTE LIKE AS A MIDDLEWARE
+		MAKE CONTROLLER BY BELOWED COMMAND => WHICH IS GENERATE IN APP/HTTP/CONTROLLER DIRECTORY 
+
+						// Route::get('user', [controllerName::class, 'functionName']);
+
+							CONTROLLER USE WITH PARAMETER
+
+						Route::get('/user/{id}', [firstController::class, 'getId']);  
+					
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+										Laravel Command List
 -> Create New App/Project = composer create-project laravel/laravel (projectName)       => CREATE NEW PROJECT
 -> Create New Project (V) = composer create-project laravel/laravel:^9.0 (projectName)  => CREATE NEW PROJECT WITH SPECIFIC VERSION
 -> Serve App/Project On Localhost = php artisan serve                                   => SERVE APP
 -> Create Model = php artisan make:model ModelName					=> MODEL
 -> Create Migration = php artisan make:migration create_users_table			=> MIGRATION 
+-> Create Migration = php artisan make:component componentName				=> CREATE COMPONENT use in blade.php file like <x-componentName/>
 -> Create Model with Migration = php artisan make:model ModelName -m			=> MODEL & MIGRATION
 -> Create Controller = php artisan make:controller ControllerName			=> CONTROLLER
 -> Create Controller with CRUD = php artisan make:controller -r				=> CONTROLLER WITH RESOURCES
