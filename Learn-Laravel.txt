@@ -102,7 +102,7 @@
 -> Create All = php artisan make:model Post(ModelName) -a				=> MODEL-FACTORY-SEEDER-MIGRATION-REQUEST-CONTROLLER-POLICY
 -> Clear All Cache = php artisan optimize:clear						=> CLEAR ALL
 -> Sync With Database = php artisan migrate                                             => ALL TABLE WHICH IN CODE IS SYNC WITH DATABASE
-
+-> Make Mail Template = php artisan make:mail <MailName> SampleMail --markdown<FolderName> emails.SampleMail  => CREATE NEW MAIL TAMPLET
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 			Laravel Step by Step Video Tutorial
 Youtube Link - https://www.youtube.com/watch?v=_UoBJDWKQbw&list=PL8p2I9GklV45jJzLsexf2_hNNafpCXw9k&ab_channel=CodeStepByStep
